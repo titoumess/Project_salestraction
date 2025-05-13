@@ -1,6 +1,6 @@
 # 🎓🚀 StudentTraction
 
-**StudentConnect** est une application web conçue pour faciliter la mise en relation entre **étudiants en école de commerce** et **entreprises innovantes** (startups & scale-ups).  
+**StudentTraction** est une application web conçue pour faciliter la mise en relation entre **étudiants en école de commerce** et **entreprises innovantes** (startups & scale-ups).  
 Les étudiants apportent leur énergie, leurs compétences et leur créativité pour aider les entreprises à **booster leur traction** (visibilité, notoriété, ventes, acquisition...).
 
 ---
