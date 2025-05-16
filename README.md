@@ -37,9 +37,9 @@ Permettre aux entreprises de collaborer facilement avec des étudiants motivés 
 
 ---
 
-## 📦 Stack technique (exemple, à adapter selon ton projet réel)
+## 📦 Stack technique
 
-- Frontend : ???
+- Frontend : React 
 - Backend : JavaSpring
 - Base de données : MongoDB
-- Communication : API Rest??
+- Communication : API Rest
