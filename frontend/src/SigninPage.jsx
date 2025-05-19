@@ -42,7 +42,7 @@ function SigninPage() {
           <div className="mb-4">
             <label className="block text-gray-700">Adresse mail</label>
             <input
-              type="text"
+              type="email"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Adresse mail"
               required
@@ -51,7 +51,7 @@ function SigninPage() {
           <div className="mb-4">
             <label className="block text-gray-700">Mot de Passe</label>
             <input
-              type="email"
+              type="text"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre mot de passe"
               required
