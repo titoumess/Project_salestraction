@@ -30,7 +30,7 @@ function SignupEtudiant() {
       </div>
 
       {/* Contenu principal */}
-      <div className="flex flex-1 items-center justify-center">
+      <div className="flex flex-1 items-center justify-center mt-32">
         <form
           onSubmit={handleSubmit}
           className="bg-gray-100 p-6 rounded-lg shadow-md w-4/5 max-w-md"
@@ -38,15 +38,52 @@ function SignupEtudiant() {
           <h1 className="text-2xl font-bold mb-4 text-center text-[var(--color-accent)]">
             Inscription Étudiant
           </h1>
+
+          {/* Nom */}
           <div className="mb-4">
-            <label className="block text-gray-700">Nom complet</label>
+            <label className="block text-gray-700">Nom</label>
             <input
               type="text"
               className="w-full border border-gray-300 rounded-lg p-2"
-              placeholder="Votre nom complet"
+              placeholder="Votre nom"
               required
             />
           </div>
+
+          {/* Prénom */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Prénom</label>
+            <input
+              type="text"
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Votre prénom"
+              required
+            />
+          </div>
+
+          {/* Mot de passe */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Mot de passe</label>
+            <input
+              type="password"
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Votre mot de passe"
+              required
+            />
+          </div>
+
+          {/* Âge */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Âge</label>
+            <input
+              type="number"
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Votre âge"
+              required
+            />
+          </div>
+
+          {/* Email */}
           <div className="mb-4">
             <label className="block text-gray-700">Email</label>
             <input
@@ -56,6 +93,19 @@ function SignupEtudiant() {
               required
             />
           </div>
+
+          {/* Téléphone */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Téléphone</label>
+            <input
+              type="tel"
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Votre numéro de téléphone"
+              required
+            />
+          </div>
+
+          {/* École */}
           <div className="mb-4">
             <label className="block text-gray-700">École</label>
             <input
@@ -65,6 +115,49 @@ function SignupEtudiant() {
               required
             />
           </div>
+
+          {/* URL LinkedIn (optionnel) */}
+          <div className="mb-4">
+            <label className="block text-gray-700">URL LinkedIn (optionnel)</label>
+            <input
+              type="url"
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Lien vers votre profil LinkedIn"
+            />
+          </div>
+
+          {/* Code postal 1 */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Code postal 1</label>
+            <input
+              type="text"
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Code postal principal"
+              required
+            />
+          </div>
+
+          {/* Code postal 2 (optionnel) */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Code postal 2 (optionnel)</label>
+            <input
+              type="text"
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Code postal secondaire"
+            />
+          </div>
+
+          {/* Commentaire (optionnel) */}
+          <div className="mb-4">
+            <label className="block text-gray-700">Commentaire (optionnel)</label>
+            <textarea
+              className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Ajoutez un commentaire"
+              rows="3"
+            ></textarea>
+          </div>
+
+          {/* Bouton S'inscrire */}
           <button
             type="submit"
             className="w-full bg-[var(--color-accent)] text-white py-2 rounded-lg hover:bg-[var(--color-accent-dark)] transition-all"
