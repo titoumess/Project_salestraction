@@ -5,10 +5,15 @@ function LoginPage({ onLogin }) {
   const navigate = useNavigate();
   const [userType, setUserType] = useState("étudiant");
 
-  const handleLogin = () => {
+  /*const handleLogin = () => {
     onLogin();
     navigate("/dashboard");
-  };
+  };*/
+
+  const handleSignin = () => {
+
+    navigate("/signin-page");
+  }
 
   const handleSignup = () => {
     if (userType === "étudiant") {
@@ -30,7 +35,7 @@ function LoginPage({ onLogin }) {
       {/* Bouton "Je me connecte" en haut à droite */}
       <div className="absolute top-4 right-4">
         <button
-          onClick={handleLogin}
+          onClick={handleSignin}
           className="bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-[var(--color-accent)] hover:text-white transition-all"
         >
           Je me connecte

@@ -4,6 +4,7 @@ import LoginPage from "./LoginPage"; // Page de connexion
 import Dashboard from "./Dashboard"; // Page après connexion
 import SignupEtudiant from "./SignupEtudiant";
 import SignupStartup from "./SignupStartup";
+import SigninPage from "./SigninPage"; // Page de connexion
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -37,6 +38,7 @@ function App() {
         {/* Autres routes */}
         <Route path="/signup-etudiant" element={<SignupEtudiant />} />
         <Route path="/signup-startup" element={<SignupStartup />} />
+        <Route path="/signin-page" element={<SigninPage />} />
       </Routes>
     </Router>
   );
