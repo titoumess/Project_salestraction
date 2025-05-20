@@ -1,6 +1,6 @@
 package com.salestraction.repository;
 
-import com.salestraction.Model.Student;
+import com.salestraction.model.Student;
 
 import java.util.List;
 import java.util.Optional;

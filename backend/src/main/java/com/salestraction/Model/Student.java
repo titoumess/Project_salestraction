@@ -1,7 +1,6 @@
-package com.salestraction.Model;
+package com.salestraction.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 @Entity
 public class Student {
