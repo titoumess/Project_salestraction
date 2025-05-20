@@ -1,6 +1,6 @@
 package com.salestraction.controller;
 
-import com.salestraction.Model.Student;
+import com.salestraction.model.Student;
 import com.salestraction.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

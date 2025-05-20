@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.salestraction.Model.Student;
+import com.salestraction.model.Student;
 import com.salestraction.repository.StudentRepository;
 
 import java.util.List;
