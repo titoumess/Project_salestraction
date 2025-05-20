@@ -5,11 +5,6 @@ function LoginPage({ onLogin }) {
   const navigate = useNavigate();
   const [userType, setUserType] = useState("étudiant");
 
-  /*const handleLogin = () => {
-    onLogin();
-    navigate("/dashboard");
-  };*/
-
   const handleSignin = () => {
 
     navigate("/signin-page");

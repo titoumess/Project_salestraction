@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Match from "./components/Match";
 import Like from "./components/Like";
+import "./Dashboard.css";
 
 function Dashboard() {
   const [userRole, setUserRole] = useState("student"); // "student" ou "startup"
@@ -39,47 +40,58 @@ function Dashboard() {
   }, [userRole]);
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
-      <header className="flex justify-between items-center p-4 border-b">
-        <h1 className="text-2xl font-bold">SALESTRACTION</h1>
-        <nav className="flex gap-4">
-          <a href="/home" className="text-gray-600 hover:text-black">Accueil</a>
-          {userRole === "student" ? (
-            <a href="/offers" className="text-gray-600 hover:text-black">Découvrir les annonces</a>
-          ) : (
-            <a href="/students" className="text-gray-600 hover:text-black">Découvrir les étudiants</a>
-          )}
-          <a href="/profile" className="text-gray-600 hover:text-black">
-            <span className="material-icons">account_circle</span>
+    <div className="dashboard-container">
+      {/* Header */}
+      <header className="dashboard-header">
+        <div className="dashboard-logo">
+          <img src="/path/to/logo.png" alt="Logo Salestraction" />
+        </div>
+        <h1 className="dashboard-title">SALESTRACTION</h1>
+        <nav className="dashboard-menu">
+          <a href="/profile">Mon profil</a>
+          <a href="/dashboard">Accueil</a>
+          <a href={userRole === "student" ? "/offers" : "/students"}>
+            {userRole === "student" ? "Voir annonces" : "Voir profils"}
           </a>
         </nav>
       </header>
 
-      <main className="p-4">
+      {/* Contenu principal */}
+      <main className="dashboard-main">
         {/* Matches */}
-        <Match matches={matches} userRole={userRole} />
+        <section className="dashboard-section">
+          <h2 className="section-title">C'est un match</h2>
+          <Match matches={matches} userRole={userRole} />
+        </section>
 
         {/* Ils vous ont aimé */}
-        <Like
-          title="Ils vous ont aimé"
-          items={likedBy}
-          userRole={userRole}
-          emptyMessage="Personne n'a encore aimé votre profil."
-        />
+        <section className="dashboard-section">
+          <h2 className="section-title">Ils vous ont aimé</h2>
+          <Like
+            title="Ils vous ont aimé"
+            items={likedBy}
+            userRole={userRole}
+            emptyMessage="Personne n'a encore aimé votre profil. Un peu de patience..."
+          />
+        </section>
 
         {/* Vous avez aimé */}
-        <Like
-          title="Vous avez aimé"
-          items={liked}
-          userRole={userRole}
-          emptyMessage="Vous n'avez encore aimé aucun profil."
-        />
+        <section className="dashboard-section">
+          <h2 className="section-title">Vous avez aimé</h2>
+          <Like
+            title="Vous avez aimé"
+            items={liked}
+            userRole={userRole}
+            emptyMessage="Vous n'avez aimé aucun profil pour l'instant."
+          />
+        </section>
       </main>
 
-      <footer className="fixed bottom-0 left-0 right-0 bg-gray-100 p-4 flex justify-around">
-        <a href="/profile" className="text-gray-600 hover:text-black">Mon profil</a>
-        <a href="/home" className="text-gray-600 hover:text-black">Accueil</a>
-        <a href={userRole === "student" ? "/offers" : "/students"} className="text-gray-600 hover:text-black">
+      {/* Footer */}
+      <footer className="dashboard-footer">
+        <a href="/profile">Mon profil</a>
+        <a href="/dashboard">Accueil</a>
+        <a href={userRole === "student" ? "/offers" : "/students"}>
           {userRole === "student" ? "Voir annonces" : "Voir profils"}
         </a>
       </footer>

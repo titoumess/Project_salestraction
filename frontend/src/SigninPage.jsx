@@ -6,8 +6,18 @@ function SigninPage() {
 
   const handleSignin = (e) => {
     e.preventDefault();
-    console.log("Lancement de la connexion");
-    navigate("/dashboard");// Redirection vers la page d'accueil d'un profil
+  
+    const email = e.target.elements.email.value;
+    const password = e.target.elements.password.value;
+  
+    if (email === "test@example.com" && password === "password") {
+      localStorage.setItem("isAuthenticated", true); // Stocke l'état d'authentification
+      localStorage.setItem("userRole", "student"); // Stocke le rôle de l'utilisateur
+      console.log("Connexion réussie, redirection vers le dashboard...");
+      navigate("/dashboard"); // Redirection vers le tableau de bord
+    } else {
+      alert("Identifiants incorrects");
+    }
   };
 
 
@@ -43,6 +53,7 @@ function SigninPage() {
             <label className="block text-gray-700">Adresse mail</label>
             <input
               type="email"
+              name="email"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Adresse mail"
               required
@@ -51,7 +62,8 @@ function SigninPage() {
           <div className="mb-4">
             <label className="block text-gray-700">Mot de Passe</label>
             <input
-              type="text"
+              type="password"
+              name="password"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre mot de passe"
               required
