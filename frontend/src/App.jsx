@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import LoginPage from "./pages/LoginPage"; // Page de connexion
+import LoginPage from "./pages/LoginPage"; // Page d'authentification
 import Dashboard from "./pages/Dashboard"; // Page après connexion
 import SignupEtudiant from "./pages/SignupEtudiant";
 import SignupStartup from "./pages/SignupStartup";
 import SigninPage from "./pages/SigninPage"; // Page de connexion
+import OffersOrProfilesPage from "./pages/OffersOrProfilesPage"; // Page des offres ou des profils
 
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
   console.log("isAuthenticated:", isAuthenticated);
 
   return (
@@ -42,6 +44,12 @@ function App() {
         <Route
           path="/signin-page"
           element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <SigninPage />}
+        />
+
+        {/* Route pour les offres ou les profils */}
+        <Route
+          path={userRole === "student" ? "/offers" : "/students"}
+          element={<OffersOrProfilesPage userRole={userRole} />}
         />
       </Routes>
     </Router>

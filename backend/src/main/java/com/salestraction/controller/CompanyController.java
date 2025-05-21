@@ -3,6 +3,7 @@ package com.salestraction.controller;
 import com.salestraction.model.Company;
 import com.salestraction.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +34,34 @@ public class CompanyController {
     @DeleteMapping("/{id}")
     public void deleteCompany(@PathVariable Integer id) {
         companyService.deleteCompany(id);
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity<?> authenticateCompany(@RequestBody AuthRequest authRequest) {
+        Company company = companyService.findByEmail(authRequest.getEmail());
+        if (company != null && company.getPassword().equals(authRequest.getPassword())) {
+            return ResponseEntity.ok(company); // ou retourne un DTO sans le mot de passe
+        } else {
+            return ResponseEntity.status(401).body("Identifiants incorrects");
+        }
+    }
+
+    // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe
+    public static class AuthRequest {
+        private String email;
+        private String password;
+
+        public String getEmail() {
+            return email;
+        }
+        public void setEmail(String email) {
+            this.email = email;
+        }
+        public String getPassword() {
+            return password;
+        }
+        public void setPassword(String password) {
+            this.password = password;
+        }
     }
 }
