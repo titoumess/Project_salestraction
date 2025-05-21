@@ -1,9 +1,8 @@
 import React from "react";
 
-function Like({ title, items, userRole, emptyMessage }) {
+function Like({ items, userRole, emptyMessage }) {
   return (
     <section className="mt-8">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
       <ul className="space-y-2">
         {items.length > 0 ? (
           items.map((item) => (

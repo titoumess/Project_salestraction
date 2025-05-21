@@ -1,9 +1,11 @@
 import React from "react";
 
-function Match({ matches, userRole }) {
+function Match({ matches, userRole, emptyMessage }) {
+  if (!matches || matches.length === 0) {
+    return <p className="text-gray-500">{emptyMessage}</p>;
+  }
   return (
     <section>
-      <h2 className="text-xl font-bold mb-4">C'est un match</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {matches.map((match) => (
           <div key={match.id} className="p-4 border rounded-lg shadow">

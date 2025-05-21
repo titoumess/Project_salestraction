@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import LoginPage from "./LoginPage"; // Page de connexion
-import Dashboard from "./Dashboard"; // Page après connexion
-import SignupEtudiant from "./SignupEtudiant";
-import SignupStartup from "./SignupStartup";
-import SigninPage from "./SigninPage"; // Page de connexion
+import LoginPage from "./pages/LoginPage"; // Page de connexion
+import Dashboard from "./pages/Dashboard"; // Page après connexion
+import SignupEtudiant from "./pages/SignupEtudiant";
+import SignupStartup from "./pages/SignupStartup";
+import SigninPage from "./pages/SigninPage"; // Page de connexion
 
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
