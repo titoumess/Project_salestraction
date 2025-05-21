@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import LoginPage from "./LoginPage"; // Page de connexion
-import Dashboard from "./Dashboard"; // Page après connexion
-import SignupEtudiant from "./SignupEtudiant";
-import SignupStartup from "./SignupStartup";
-import SigninPage from "./SigninPage"; // Page de connexion
+import LoginPage from "./pages/LoginPage"; // Page d'authentification
+import Dashboard from "./pages/Dashboard"; // Page après connexion
+import SignupEtudiant from "./pages/SignupEtudiant";
+import SignupStartup from "./pages/SignupStartup";
+import SigninPage from "./pages/SigninPage"; // Page de connexion
+import OffersOrProfilesPage from "./pages/OffersOrProfilesPage"; // Page des offres ou des profils
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  console.log("isAuthenticated:", isAuthenticated); // Vérifiez si la valeur change après le clic
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
+  console.log("isAuthenticated:", isAuthenticated);
 
   return (
     <Router>
@@ -17,7 +18,7 @@ function App() {
         {/* Route pour la page de connexion */}
         <Route
           path="/login"
-          element={<LoginPage onLogin={() => setIsAuthenticated(true)} />}
+          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />}
         />
 
         {/* Route pour la page principale */}
@@ -35,10 +36,21 @@ function App() {
         {/* Redirection par défaut */}
         <Route path="/" element={<Navigate to="/login" replace />} />
 
-        {/* Autres routes */}
+        {/* Routes accessibles sans authentification */}
         <Route path="/signup-etudiant" element={<SignupEtudiant />} />
         <Route path="/signup-startup" element={<SignupStartup />} />
-        <Route path="/signin-page" element={<SigninPage />} />
+
+        {/* Route pour la page de connexion */}
+        <Route
+          path="/signin-page"
+          element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <SigninPage />}
+        />
+
+        {/* Route pour les offres ou les profils */}
+        <Route
+          path={userRole === "student" ? "/offers" : "/students"}
+          element={<OffersOrProfilesPage userRole={userRole} />}
+        />
       </Routes>
     </Router>
   );

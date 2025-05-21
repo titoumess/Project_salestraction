@@ -3,6 +3,8 @@ package com.salestraction.controller;
 import com.salestraction.model.Student;
 import com.salestraction.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,5 +35,34 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable Integer id) {
         studentService.deleteStudent(id);
+    }
+
+    @PostMapping("/auth")
+    public ResponseEntity<?> authenticateStudent(@RequestBody AuthRequest authRequest) {
+        Student student = studentService.findByEmail(authRequest.getEmail());
+        if (student != null && student.getPassword().equals(authRequest.getPassword())) {
+            return ResponseEntity.ok(student); // ou retourne un DTO sans le mot de passe
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants incorrects");
+        }
+    }
+
+    // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe
+    public static class AuthRequest {
+        private String email;
+        private String password;
+
+        public String getEmail() {
+            return email;
+        }
+        public void setEmail(String email) {
+            this.email = email;
+        }
+        public String getPassword() {
+            return password;
+        }
+        public void setPassword(String password) {
+            this.password = password;
+        }
     }
 }

@@ -1,7 +1,0 @@
-@import "tailwindcss";
-
-:root{
-  --color-accent: #fe785c;          /* Couleur principale */
-  --color-accent-light: #ffbca7;    /* Variante claire */
-  --color-accent-dark: #f66559;     /* Variante foncée */
-}

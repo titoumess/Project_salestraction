@@ -34,4 +34,8 @@ public class CompanyService {
     public void deleteCompany(Integer id) {
         companyRepository.deleteById(id);
     }
+
+    public Company findByEmail(String email) {
+        return companyRepository.findByEmail(email);
+    }
 }
