@@ -14,9 +14,9 @@ import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
-  const isAdminValidated = localStorage.getItem("admin_validation") === "true"; // ou "true" selon ton backend
+  const isAdminValidated = localStorage.getItem("adminValidation") === "1"; // ou "true" selon ton backend
   console.log("isAuthenticated:", isAuthenticated);
-  console.log("is adminValidated:", isAdminValidated);
+  console.log("isAdminValidated:", isAdminValidated);
 
   return (
     <Router>
@@ -64,6 +64,7 @@ function App() {
         <Route path="/create-offer" element={<CreateOffer />} />
         <Route path="/pending-validation" element={<PendingValidation />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} /> {/* Pour le dashboard connecté */}
 
       </Routes>
     </Router>
