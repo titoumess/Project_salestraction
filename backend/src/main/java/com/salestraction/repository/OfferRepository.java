@@ -1,7 +1,6 @@
 package com.salestraction.repository;
 
-
-import com.salestraction.Model.Offer;
+import com.salestraction.model.Offer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +13,5 @@ public interface OfferRepository extends JpaRepository<Offer, Integer> {
     Offer findById(int id);
     List<Offer> findByTitle(String title);
     //List<Offer> findByCompany_IdCompany(int idCompany);
+    List<Offer> findByAdminValidation(Integer adminValidation);
 }

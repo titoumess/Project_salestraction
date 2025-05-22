@@ -10,6 +10,7 @@ import StudentProfile from "./pages/StudentProfile";
 import CreateOffer from "./pages/CreateOffer"; // Page de création d'offre
 import PendingValidation from "./pages/PendingValidation";
 import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -63,6 +64,8 @@ function App() {
         <Route path="/create-offer" element={<CreateOffer />} />
         <Route path="/pending-validation" element={<PendingValidation />} />
         <Route path="/offers/:id" element={<OfferDetail />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+
       </Routes>
     </Router>
   );

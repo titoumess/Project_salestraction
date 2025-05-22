@@ -18,8 +18,12 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping
-    public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    public List<Student> getAllStudents(@RequestParam(value = "admin_validation", required = false) Integer adminValidation) {
+        if (adminValidation != null) {
+            return studentService.getStudentsByAdminValidation(adminValidation);
+        } else {
+            return studentService.getAllStudents();
+        }
     }
 
     @GetMapping("/{id}")
@@ -46,6 +50,14 @@ public class StudentController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Identifiants incorrects");
         }
+    }
+
+    @PutMapping("/{id}/validate")
+    public ResponseEntity<?> validateStudent(@PathVariable Integer id, @RequestBody(required = false) Student student) {
+        Student s = studentService.getStudentById(id);
+        s.setAdminValidation(1);
+        studentService.saveStudent(s);
+        return ResponseEntity.ok().build();
     }
 
     // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe

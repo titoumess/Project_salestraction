@@ -19,5 +19,6 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
     List<Company> findByName(String name);
     void deleteById(Integer id_company);
     Optional<Company> findBySiret(String siret);
+    List<Company> findByAdminValidation(Integer adminValidation);
 
 }

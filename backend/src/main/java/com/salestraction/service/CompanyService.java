@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.salestraction.model.Company;
+import com.salestraction.model.Student;
 import com.salestraction.repository.CompanyRepository;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public class CompanyService {
 
     public List<Company> getAllCompanies() {
         return companyRepository.findAll();
+    }
+
+    public List<Company> getCompaniesByAdminValidation(Integer adminValidation) {
+        return companyRepository.findByAdminValidation(adminValidation);
     }
 
     public Company getCompanyById(Integer id) {
