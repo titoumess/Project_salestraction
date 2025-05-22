@@ -17,9 +17,13 @@ public class Offer {
     private Integer commission;
     private String status;
     private Integer adminValidation = 0;
+<<<<<<< HEAD
 
     @Column(name = "id_company")
     private Integer idCompany;
+=======
+    private Integer id_company;
+>>>>>>> 9427fdc (Admin dashbord)
 
     public Offer() {}
 
@@ -34,7 +38,11 @@ public class Offer {
         this.commission = commission;
         this.status = status;
         this.adminValidation = admin_validation;
+<<<<<<< HEAD
         this.idCompany = id_company;
+=======
+        this.id_company = id_company;
+>>>>>>> 9427fdc (Admin dashbord)
         
     }
 
