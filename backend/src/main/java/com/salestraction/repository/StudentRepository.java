@@ -19,10 +19,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     List<Student> findByFirstname(String firstname);
     void deleteById(Integer id_student);
     List<Student> findByAdminValidation(Integer adminValidation);
-<<<<<<< HEAD
-
     Optional<Student> findByEmailAndPassword(String email, String password);
-=======
->>>>>>> 9427fdc (Admin dashbord)
 
 }

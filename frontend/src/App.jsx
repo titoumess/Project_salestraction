@@ -73,6 +73,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} /> {/* Pour le dashboard connecté */}
 
         <Route path="/company-profile" element={<CompanyProfile />} />
+
       </Routes>
     </Router>
   );
