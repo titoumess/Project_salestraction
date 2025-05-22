@@ -53,6 +53,7 @@ function SignupEtudiant() {
       const studentResp = await response.json();
       localStorage.clear();
       localStorage.setItem("studentId", studentResp.id_student);
+
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "student");
       // Redirection selon création ou modification

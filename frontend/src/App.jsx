@@ -13,10 +13,12 @@ import AdminDashboard from "./pages/AdminDashboard";
 import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
 import CompanyProfile from "./pages/CompanyProfile"; // Page de profil de l'entreprise
 
+
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
   const isAdminValidated = localStorage.getItem("adminValidation") === "1"; // ou "true" selon ton backend
+
   console.log("isAuthenticated:", isAuthenticated);
   console.log("isAdminValidated:", isAdminValidated);
 
@@ -65,11 +67,11 @@ function App() {
         <Route path="/student-profile" element={<StudentProfile />} /> {/* Pour le profil connecté */}
         <Route path="/create-offer" element={<CreateOffer />} />
         <Route path="/pending-validation" element={<PendingValidation />} />
+
         <Route path="/offers/:id" element={<OfferDetail />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/dashboard" element={<Dashboard />} /> {/* Pour le dashboard connecté */}
 
-        <Route path="/offers/:id" element={<OfferDetail />} />
         <Route path="/company-profile" element={<CompanyProfile />} />
       </Routes>
     </Router>

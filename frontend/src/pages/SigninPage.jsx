@@ -44,8 +44,8 @@ function SigninPage() {
         if (response.ok) {
 
           const student = await response.json();
-
           localStorage.clear();
+
           localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("userRole", "student");
           localStorage.setItem("studentId", student.id_student);
@@ -64,11 +64,9 @@ function SigninPage() {
 
 
           if (student.adminValidation === 1) {
-            console.log("On et dans la fonction student if")
             localStorage.setItem("isAdminValidated", "true")
             navigate("/dashboard");
           } else {
-            console.log("On et dans la fonction student else")
             localStorage.setItem("isAdminValidated", "false")
             navigate("/pending-validation");
           }
@@ -95,11 +93,9 @@ function SigninPage() {
           localStorage.setItem("postalCode", company.postal_code);
           localStorage.setItem("companyPhoneNumber", company.phone_number);
           if (company.adminValidation === 1) {
-            console.log("On et dans la fonction startup if")
             localStorage.setItem("isAdminValidated", "true")
             navigate("/dashboard");
           } else {
-            console.log("On et dans la fonction startup else")
             localStorage.setItem("isAdminValidated", "false")
             navigate("/pending-validation");
           }

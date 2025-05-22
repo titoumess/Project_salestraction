@@ -50,6 +50,7 @@ function SignupStartup() {
       const companyResp = await response.json();
       localStorage.clear();
       localStorage.setItem("companyId", companyResp.id_company);
+
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "startup");
       if (isEdit) {
