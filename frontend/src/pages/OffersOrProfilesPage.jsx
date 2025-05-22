@@ -100,7 +100,7 @@ function OffersOrProfilesPage({ userRole }) {
           </div>
         ))}
       </div>
-      <Menu userRole={userRole} />
+      <Menu userRole={localStorage.getItem("userRole")} />
     </div>
   );
 }

@@ -50,7 +50,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <Logo />
-      <Menu userRole={userRole} />
+      <Menu userRole={localStorage.getItem("userRole")} />
       <main className="dashboard-main">
         {/* Matches */}
         <section className="dashboard-section">

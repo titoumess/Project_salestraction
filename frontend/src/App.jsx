@@ -12,6 +12,7 @@ import PendingValidation from "./pages/PendingValidation";
 import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
 import AdminDashboard from "./pages/AdminDashboard";
 import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
+import CompanyProfile from "./pages/CompanyProfile"; // Page de profil de l'entreprise
 
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
@@ -61,13 +62,14 @@ function App() {
         <Route path="/offers" element={<OffersOrProfilesPage userRole="student" />} />
         <Route path="/students" element={<OffersOrProfilesPage userRole="startup" />} />
         <Route path="/students/:id" element={<StudentProfile />} />
-        <Route path="/profile" element={<StudentProfile />} /> {/* Pour le profil connecté */}
+        <Route path="/student-profile" element={<StudentProfile />} /> {/* Pour le profil connecté */}
         <Route path="/create-offer" element={<CreateOffer />} />
         <Route path="/pending-validation" element={<PendingValidation />} />
         <Route path="/offers/:id" element={<OfferDetail />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
         <Route path="/offers/:id" element={<OfferDetail />} />
+        <Route path="/company-profile" element={<CompanyProfile />} />
       </Routes>
     </Router>
   );

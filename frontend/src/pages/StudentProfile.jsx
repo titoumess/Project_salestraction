@@ -21,7 +21,7 @@ function StudentProfile() {
     <div className="min-h-screen flex flex-col">
       <div className="flex flex-col items-start gap-2 px-6 pt-6">
         <Logo />
-        <Menu />
+        <Menu userRole={localStorage.getItem("userRole")} />
       </div>
       <div className="flex flex-1 flex-col items-center justify-center pt-8 pb-8">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg flex flex-col items-center border border-blue-100">

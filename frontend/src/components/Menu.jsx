@@ -47,8 +47,12 @@ function Menu({ userRole = "student", profilePic }) {
             <button
               type="button"
               onClick={() => {
+                if (userRole === "startup") {
+                  navigate("/company-profile");
+                } else {
+                  navigate("/student-profile");
+                }
                 setOpen(false);
-                navigate("/profile");
               }}
             >
               Mon profil
