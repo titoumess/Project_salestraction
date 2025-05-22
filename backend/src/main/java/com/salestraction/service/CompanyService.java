@@ -43,4 +43,13 @@ public class CompanyService {
     public Company findByEmail(String email) {
         return companyRepository.findByEmail(email);
     }
+
+    public Company updateCompanyWithPasswordCheck(Integer id, Company updatedCompany) {
+        Company existingCompany = getCompanyById(id);
+        if (updatedCompany.getPassword() == null || updatedCompany.getPassword().isEmpty()) {
+            updatedCompany.setPassword(existingCompany.getPassword());
+        }
+        updatedCompany.setId_company(id);
+        return saveCompany(updatedCompany);
+    }
 }

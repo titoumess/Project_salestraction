@@ -32,10 +32,18 @@ function SignupStartup() {
       ? `${apiUrl}/api/companies/${company.id_company}`
       : `${apiUrl}/api/companies`;
 
+    // Copie du formulaire
+    const data = { ...form };
+
+    // Ne pas envoyer le password vide lors d'une modification
+    if (isEdit && !data.password) {
+      delete data.password;
+    }
+
     const response = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
+      body: JSON.stringify(data),
     });
 
     if (response.ok) {
@@ -44,7 +52,6 @@ function SignupStartup() {
       localStorage.setItem("companyId", companyResp.id_company);
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "startup");
-      // Redirection selon création ou modification
       if (isEdit) {
         navigate("/company-profile");
       } else {

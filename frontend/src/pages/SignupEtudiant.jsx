@@ -7,6 +7,8 @@ function SignupEtudiant() {
   const location = useLocation();
   const student = location.state?.student;
 
+  const isEdit = !!student;
+
   const [form, setForm] = useState({
     firstname: student?.firstname || "",
     lastname: student?.lastname || "",
@@ -24,35 +26,43 @@ function SignupEtudiant() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // ...envoie les données au backend...
     const apiUrl = import.meta.env.VITE_API_URL;
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
+    const method = isEdit ? "PUT" : "POST";
+    const url = isEdit
+      ? `${apiUrl}/api/students/${student.id_student}`
+      : `${apiUrl}/api/students`;
 
     // Conversion des champs numériques
+    const data = { ...form };
     if (data.age) data.age = parseInt(data.age, 10);
     if (data.postal_code1) data.postal_code1 = parseInt(data.postal_code1, 10);
     if (data.postal_code2) data.postal_code2 = data.postal_code2 ? parseInt(data.postal_code2, 10) : null;
 
-    console.log(data)
+    // Ne pas envoyer le password vide lors d'une modification
+    if (isEdit && !data.password) {
+      delete data.password;
+    }
 
-    const response = await fetch(`${apiUrl}/api/students`, {
-      method: "POST",
+    const response = await fetch(url, {
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
 
     if (response.ok) {
-      const student = await response.json();
+      const studentResp = await response.json();
       localStorage.clear();
-      // Stocke l'id de l'étudiant
-      localStorage.setItem("studentId", student.id_student);
-      // Stocke la validation admin dans le localStorage
+      localStorage.setItem("studentId", studentResp.id_student);
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "student");
-      navigate("/pending-validation"); // <-- redirection vers la page d'attente
+      // Redirection selon création ou modification
+      if (isEdit) {
+        navigate("/student-profile");
+      } else {
+        navigate("/pending-validation");
+      }
     } else {
-      alert("Erreur lors de la création du compte étudiant");
+      alert("Erreur lors de la création ou modification du compte étudiant");
     }
   };
 
@@ -73,10 +83,10 @@ function SignupEtudiant() {
       <div className="flex flex-1 items-center justify-center mt-4">
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-100 p-6 rounded-lg shadow-md w-4/5 max-w-md"
+          className="bg-white border border-gray-200 p-8 rounded-2xl shadow-lg w-full max-w-md"
         >
-          <h1 className="text-2xl font-bold mb-4 text-center text-[var(--color-accent)]">
-            Inscription Étudiant
+          <h1 className="text-2xl font-bold mb-6 text-center text-[var(--color-accent)]">
+            {isEdit ? "Modifier mon profil étudiant" : "Inscription Étudiant"}
           </h1>
 
           {/* Nom */}
@@ -85,7 +95,7 @@ function SignupEtudiant() {
             <input
               type="text"
               name="lastname"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Votre nom"
               value={form.lastname}
               onChange={(e) => setForm({ ...form, lastname: e.target.value })}
@@ -99,7 +109,7 @@ function SignupEtudiant() {
             <input
               type="text"
               name="firstname"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Votre prénom"
               value={form.firstname}
               onChange={(e) => setForm({ ...form, firstname: e.target.value })}
@@ -113,12 +123,17 @@ function SignupEtudiant() {
             <input
               type="password"
               name="password"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Votre mot de passe"
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
-              required
+              required={!isEdit}
             />
+            {isEdit && (
+              <span className="text-xs text-gray-500">
+                Laissez vide pour ne pas modifier le mot de passe
+              </span>
+            )}
           </div>
 
           {/* Âge */}
@@ -127,7 +142,7 @@ function SignupEtudiant() {
             <input
               type="number"
               name="age"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Votre âge"
               value={form.age}
               onChange={(e) => setForm({ ...form, age: e.target.value })}
@@ -141,7 +156,7 @@ function SignupEtudiant() {
             <input
               type="email"
               name="email"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Votre email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -155,7 +170,7 @@ function SignupEtudiant() {
             <input
               type="tel"
               name="phone_number"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Votre numéro de téléphone"
               value={form.phone_number}
               onChange={(e) => setForm({ ...form, phone_number: e.target.value })}
@@ -169,7 +184,7 @@ function SignupEtudiant() {
             <input
               type="text"
               name="school"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Votre école"
               value={form.school}
               onChange={(e) => setForm({ ...form, school: e.target.value })}
@@ -183,7 +198,7 @@ function SignupEtudiant() {
             <input
               type="url"
               name="linkedin_url"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Lien vers votre profil LinkedIn"
               value={form.linkedin_url}
               onChange={(e) => setForm({ ...form, linkedin_url: e.target.value })}
@@ -196,7 +211,7 @@ function SignupEtudiant() {
             <input
               type="text"
               name="postal_code1"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Code postal principal"
               value={form.postal_code1}
               onChange={(e) => setForm({ ...form, postal_code1: e.target.value })}
@@ -210,7 +225,7 @@ function SignupEtudiant() {
             <input
               type="text"
               name="postal_code2"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Code postal secondaire"
               value={form.postal_code2}
               onChange={(e) => setForm({ ...form, postal_code2: e.target.value })}
@@ -223,7 +238,7 @@ function SignupEtudiant() {
             <input
               type="text"
               name="skills"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Vos compétences (ex: JavaScript, Python...)"
               value={form.skills}
               onChange={(e) => setForm({ ...form, skills: e.target.value })}
@@ -236,7 +251,7 @@ function SignupEtudiant() {
             <label className="block text-gray-700">Description</label>
             <textarea
               name="comment"
-              className="w-full border border-gray-300 rounded-lg p-2"
+              className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:border-[var(--color-accent)] transition"
               placeholder="Ajoutez un commentaire"
               rows="3"
               value={form.comment}
@@ -244,12 +259,12 @@ function SignupEtudiant() {
             ></textarea>
           </div>
 
-          {/* Bouton S'inscrire */}
+          {/* Bouton */}
           <button
             type="submit"
-            className="w-full bg-[var(--color-accent)] text-white py-2 rounded-lg hover:bg-[var(--color-accent-dark)] transition-all"
+            className="w-full bg-[var(--color-accent)] text-white py-2 rounded-lg hover:bg-[var(--color-accent-dark)] transition-all font-semibold shadow"
           >
-            S'inscrire
+            {isEdit ? "Enregistrer les modifications" : "S'inscrire"}
           </button>
         </form>
       </div>
