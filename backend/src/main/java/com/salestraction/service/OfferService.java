@@ -1,6 +1,6 @@
 package com.salestraction.service;
 
-import com.salestraction.Model.Offer;
+import com.salestraction.model.Offer;
 import com.salestraction.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

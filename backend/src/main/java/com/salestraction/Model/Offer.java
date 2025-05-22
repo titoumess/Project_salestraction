@@ -1,4 +1,4 @@
-package com.salestraction.Model;
+package com.salestraction.model;
 
 import jakarta.persistence.*;
 

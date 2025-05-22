@@ -1,6 +1,6 @@
 package com.salestraction.controller;
 
-import com.salestraction.Model.Offer;
+import com.salestraction.model.Offer;
 import com.salestraction.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
