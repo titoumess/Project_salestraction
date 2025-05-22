@@ -48,6 +48,7 @@ function CompanyProfile() {
           >
             Modifier mon profil
           </button>
+
           <div className="text-gray-700 w-full flex flex-col gap-2 mb-4">
             <div><strong>Email :</strong> {company.email}</div>
             <div><strong>Téléphone :</strong> {company.phone_number}</div>
