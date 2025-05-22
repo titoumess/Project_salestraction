@@ -16,7 +16,7 @@ public class Company {
     private String password;
     private String phone_number;
     private Integer postal_code;
-    private Integer admin_validation = 0;
+    private Integer adminValidation = 0;
     private String siret;
 
     public Company() {}
@@ -29,16 +29,16 @@ public class Company {
         this.password = password;
         this.phone_number = phone_number;
         this.postal_code = postal_code;
-        this.admin_validation = admin_validation;
+        this.adminValidation = admin_validation;
         this.siret = siret;
     }
 
     // Getters et Setters
-    public Integer getCompany_id() {
+    public Integer getId_company() {
         return id_company;
     }
 
-    public void setCompany_id(Integer id_company) {
+    public void setId_company(Integer id_company) {
         this.id_company = id_company;
     }
 
@@ -88,12 +88,12 @@ public class Company {
     }
 
 
-    public Integer getAdmin_validation() {
-        return admin_validation;
+    public Integer getAdminValidation() {
+        return adminValidation;
     }
 
-    public void setAdmin_validation(Integer admin_validation) {
-        this.admin_validation = admin_validation;
+    public void setAdminValidation(Integer admin_validation) {
+        this.adminValidation = admin_validation;
     }
 
 

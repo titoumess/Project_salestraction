@@ -1,4 +1,4 @@
-package com.salestraction.Model;
+package com.salestraction.model;
 
 import jakarta.persistence.*;
 
@@ -16,13 +16,13 @@ public class Offer {
     private boolean remote;
     private Integer commission;
     private String status;
-    private boolean admin_validation = false;
+    private Integer adminValidation = 0;
     private Integer id_company;
 
     public Offer() {}
 
     public Offer(Integer id_offer, String title, String description, String product_service, Float remuneration,
-                 boolean remote, Integer commission, String status, boolean admin_validation, Integer id_company) {
+                 boolean remote, Integer commission, String status, Integer admin_validation, Integer id_company) {
         this.id_offer = id_offer;
         this.title = title;
         this.description = description;
@@ -31,17 +31,17 @@ public class Offer {
         this.remote = remote;
         this.commission = commission;
         this.status = status;
-        this.admin_validation = admin_validation;
+        this.adminValidation = admin_validation;
         this.id_company = id_company;
         
     }
 
     // Getters et Setters
-    public Integer getOffer_id() {
+    public Integer getId_offer() {
         return id_offer;
     }
 
-    public void setOffer_id(Integer id_offer) {
+    public void setId_offer(Integer id_offer) {
         this.id_offer = id_offer;
     }
 
@@ -101,12 +101,12 @@ public class Offer {
         this.status = status;
     }
 
-    public boolean isAdmin_validation() {
-        return admin_validation;
+    public Integer getAdminValidation() {
+        return adminValidation;
     }
 
-    public void setAdmin_validation(boolean admin_validation) {
-        this.admin_validation = admin_validation;
+    public void setAdminValidation(Integer admin_validation) {
+        this.adminValidation = admin_validation;
     }
 
     public Integer getId_company() {
