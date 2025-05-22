@@ -16,7 +16,7 @@ public class Company {
     private String password;
     private String phone_number;
     private Integer postal_code;
-    private Integer admin_validation;
+    private Integer admin_validation = 0;
     private String siret;
 
     public Company() {}

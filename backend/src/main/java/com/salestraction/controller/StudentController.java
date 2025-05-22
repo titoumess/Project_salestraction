@@ -29,6 +29,7 @@ public class StudentController {
 
     @PostMapping
     public Student createStudent(@RequestBody Student student) {
+        System.out.println(student); // Ajoute ceci pour voir ce que tu reçois
         return studentService.saveStudent(student);
     }
 

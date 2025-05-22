@@ -1,4 +1,4 @@
-package com.salestraction.model;
+package com.salestraction.Model;
 
 import jakarta.persistence.*;
 
@@ -11,22 +11,22 @@ public class Offer {
 
     private String title;
     private String description;
-    private String product_servive;
+    private String product_service;
     private Float remuneration;
     private boolean remote;
     private Integer commission;
     private String status;
-    private boolean admin_validation;
+    private boolean admin_validation = false;
     private Integer id_company;
 
     public Offer() {}
 
-    public Offer(Integer id_offer, String title, String description, String product_servive, Float remuneration,
+    public Offer(Integer id_offer, String title, String description, String product_service, Float remuneration,
                  boolean remote, Integer commission, String status, boolean admin_validation, Integer id_company) {
         this.id_offer = id_offer;
         this.title = title;
         this.description = description;
-        this.product_servive = product_servive;
+        this.product_service = product_service;
         this.remuneration = remuneration;
         this.remote = remote;
         this.commission = commission;
@@ -61,12 +61,12 @@ public class Offer {
         this.description = description;
     }
 
-    public String getProduct_servive() {
-        return product_servive;
+    public String getProduct_service() {
+        return product_service;
     }
 
-    public void setProduct_servive(String product_servive) {
-        this.product_servive = product_servive;
+    public void setProduct_service(String product_service) {
+        this.product_service = product_service;
     }
 
     public Float getRemuneration() {
