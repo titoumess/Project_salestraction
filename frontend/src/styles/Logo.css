@@ -1,0 +1,5 @@
+/* Image du logo */
+.logo-container img {
+  height: 120px; /* Ajustez la hauteur selon vos besoins */
+  width: auto; /* Maintient les proportions de l'image */
+}

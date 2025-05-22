@@ -1,0 +1,141 @@
+/* Menu par défaut */
+.menu-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  /* Liens du menu */
+  .menu-container a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .menu-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Menu pour PC */
+  @media (min-width: 769px) {
+    .menu-container {
+      position: absolute;
+      top: 2rem;
+      right: 1.5rem;
+    }
+  }
+  
+  /* Menu pour mobile */
+  @media (max-width: 768px) {
+    .menu-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-accent);
+        padding: 1rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        gap: 5rem;
+    }
+  
+    .menu-container a {
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .menu-container a.accueil-link {
+      flex: 2 1 0; /* Prend deux fois plus de place, donc centré */
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-menu {
+      width: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+.profile-menu {
+  position: relative;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid var(--color-accent, #6c63ff);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dropdown-menu {
+  position: absolute;
+  bottom: 56px; /* Affiche au-dessus du bouton profil */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 200;
+}
+
+.dropdown-menu a,
+.dropdown-menu button {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #333;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  background: #f5f5f5;
+}
+
+@media (min-width: 769px) {
+  .dropdown-menu {
+    top: 48px;
+    bottom: auto;
+    right: 0;
+    left: auto;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    left: auto;
+    right: 0;
+    transform: none;
+    min-width: 150px;
+    max-width: 90vw;
+    box-sizing: border-box;
+  }
+}
