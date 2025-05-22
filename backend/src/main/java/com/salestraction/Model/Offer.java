@@ -17,7 +17,9 @@ public class Offer {
     private Integer commission;
     private String status;
     private Integer adminValidation = 0;
-    private Integer id_company;
+
+    @Column(name = "id_company")
+    private Integer idCompany;
 
     public Offer() {}
 
@@ -32,7 +34,7 @@ public class Offer {
         this.commission = commission;
         this.status = status;
         this.adminValidation = admin_validation;
-        this.id_company = id_company;
+        this.idCompany = id_company;
         
     }
 
@@ -109,12 +111,12 @@ public class Offer {
         this.adminValidation = admin_validation;
     }
 
-    public Integer getId_company() {
-        return id_company;
+    public Integer getIdCompany() {
+        return idCompany;
     }
 
-    public void setId_company(Integer id_company) {
-        this.id_company = id_company;
+    public void setIdCompany(Integer idCompany) {
+        this.idCompany = idCompany;
     }
 }
 

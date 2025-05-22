@@ -8,10 +8,8 @@ import java.util.List;
 
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Integer> {
-    // Exemples de méthodes personnalisées
     List<Offer> findAll();
-    Offer findById(int id);
     List<Offer> findByTitle(String title);
-    //List<Offer> findByCompany_IdCompany(int idCompany);
+    List<Offer> findByIdCompany(Integer idCompany); 
     List<Offer> findByAdminValidation(Integer adminValidation);
 }

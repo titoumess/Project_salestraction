@@ -18,8 +18,14 @@ public class OfferController {
     private OfferService offerService;
 
     @GetMapping
-    public List<Offer> getAllOffers(@RequestParam(value = "admin_validation", required = false) Integer adminValidation) {
-        if (adminValidation != null) {
+    public List<Offer> getAllOffers(
+        @RequestParam(value = "admin_validation", required = false) Integer adminValidation,
+        @RequestParam(value = "companyId", required = false) Integer companyId
+    ) {
+        if (companyId != null) {
+            // Ajoute cette méthode dans OfferService et OfferRepository si besoin
+            return offerService.getOffersByCompanyId(companyId);
+        } else if (adminValidation != null) {
             return offerService.getOffersByAdminValidation(adminValidation);
         } else {
             return offerService.getAllOffers();
