@@ -5,7 +5,6 @@ import Logo from "../components/Logo";
 function PendingValidation() {
   const navigate = useNavigate();
 
-<<<<<<< HEAD
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL;
     const companyId = localStorage.getItem("companyId");
@@ -40,8 +39,6 @@ function PendingValidation() {
         });
     }
   }, [navigate]);
-=======
->>>>>>> a84dc46 (Ajout Authentification + Redirection vers page)
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800">

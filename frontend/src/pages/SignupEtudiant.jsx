@@ -6,9 +6,7 @@ function SignupEtudiant() {
   const navigate = useNavigate();
   const location = useLocation();
   const student = location.state?.student;
-
   const isEdit = !!student;
-
   const [form, setForm] = useState({
     firstname: student?.firstname || "",
     lastname: student?.lastname || "",
@@ -129,6 +127,7 @@ function SignupEtudiant() {
               value={form.password}
               onChange={(e) => setForm({ ...form, password: e.target.value })}
               required={!isEdit}
+
             />
             {isEdit && (
               <span className="text-xs text-gray-500">

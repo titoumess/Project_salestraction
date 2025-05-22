@@ -63,6 +63,7 @@ function StudentProfile() {
           <button
             className="mt-6 px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-accent-dark)] transition font-semibold shadow"
             onClick={() => navigate("/signup-etudiant", { state: { student } })}
+
           >
             Modifier mon profil
           </button>

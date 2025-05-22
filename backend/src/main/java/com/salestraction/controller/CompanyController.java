@@ -1,7 +1,6 @@
 package com.salestraction.controller;
 
 import com.salestraction.model.Company;
-import com.salestraction.model.Student;
 import com.salestraction.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +63,7 @@ public class CompanyController {
     public Company updateCompany(@PathVariable("id") Integer id, @RequestBody Company company) {
         return companyService.updateCompanyWithPasswordCheck(id, company);
     }
+
 
     // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe
     public static class AuthRequest {
