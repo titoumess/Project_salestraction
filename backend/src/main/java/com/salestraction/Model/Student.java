@@ -20,14 +20,14 @@ public class Student {
     private String school;
     private String skills;
     private String linkedin_url;
-    private Integer admin_validation;
+    private Integer admin_validation = 0;
     private Integer age;
 
     public Student() {}
 
     public Student(Integer id_student, String firstname, String lastname, String email, String password, String phone_number,
                    Integer postal_code1, Integer postal_code2, String comment, String school,
-                   String skills, String linkedin_url, Integer admin_validation) {
+                   String skills, String linkedin_url, Integer admin_validation, Integer age) {
         this.id_student = id_student;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -41,30 +41,31 @@ public class Student {
         this.skills = skills;
         this.linkedin_url = linkedin_url;
         this.admin_validation = admin_validation;
+        this.age = age;
     }
 
     // Getters et Setters
-    public Integer getStudent_id() {
+    public Integer getId_student() {
         return id_student;
     }
 
-    public void setStudent_id(Integer id_student) {
+    public void setId_student(Integer id_student) {
         this.id_student = id_student;
     }
 
-    public String getFirstName() {
+    public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstName(String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public String getLastName() {
+    public String getLastname() {
         return lastname;
     }
 
-    public void setLastName(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
@@ -84,11 +85,11 @@ public class Student {
         this.password = password;
     }
 
-    public String getPhoneNumber() {
+    public String getPhone_number() {
         return phone_number;
     }
 
-    public void setPhoneNumber(String phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
     }
 
