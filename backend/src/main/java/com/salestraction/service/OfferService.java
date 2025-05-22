@@ -1,6 +1,9 @@
 package com.salestraction.service;
 
+<<<<<<< HEAD
 import com.salestraction.model.Company;
+=======
+>>>>>>> a84dc46 (Ajout Authentification + Redirection vers page)
 import com.salestraction.model.Offer;
 import com.salestraction.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;

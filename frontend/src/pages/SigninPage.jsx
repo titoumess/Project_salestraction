@@ -4,56 +4,128 @@ import { useNavigate } from "react-router-dom";
 function SigninPage() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const apiUrl = import.meta.env.API_BACKEND;
+  const [checkboxes, setCheckboxes] = useState({
+    student: false,
+    startup: false, 
+    admin: false
+  });
+
+  const handleCheckboxChange = (type) => {
+    setCheckboxes({
+      student: type === 'student' ? !checkboxes.student : false,
+      startup: type === 'startup' ? !checkboxes.startup : false,
+      admin: type === 'admin' ? !checkboxes.admin : false
+    });
+  };
 
   const handleSignin = async (e) => {
     e.preventDefault();
 
     const email = e.target.elements.email.value;
     const password = e.target.elements.password.value;
-
-    let userRole = "student";
     let apiUrl = import.meta.env.VITE_API_URL;
 
-    // On tente d'abord étudiant
-    let response = await fetch(`${apiUrl}/api/students/auth`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (response.ok) {
-      const student = await response.json();
-      localStorage.clear();
-      localStorage.setItem("isAuthenticated", true);
-      localStorage.setItem("userRole", userRole);
-      localStorage.setItem("studentId", student.id_student);
-      localStorage.setItem("admin_validation", String(student.admin_validation)); // Optionnel si tu veux suivre la validation
-      navigate("/dashboard");
-      window.location.reload();
+    // Vérifier si une checkbox est cochée
+    if (!checkboxes.student && !checkboxes.startup && !checkboxes.admin) {
+      setError("Veuillez sélectionner un type de compte");
       return;
     }
 
-    // Si étudiant échoue, on tente startup
-    userRole = "startup";
-    response = await fetch(`${apiUrl}/api/companies/auth`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      let response;
+      if (checkboxes.student) {
+        response = await fetch(`http://localhost:8080/api/studentsauth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
 
-    if (response.ok) {
-      const company = await response.json();
-      localStorage.clear();
+        if (response.ok) {
+          console.log("On et dans la fonction student")
+          const student = await response.json();
+          localStorage.clear();
       localStorage.setItem("isAuthenticated", true);
-      localStorage.setItem("userRole", userRole);
-      localStorage.setItem("companyId", company.id_company);
-      navigate("/dashboard");
-      window.location.reload();
-    } else {
+          localStorage.setItem("userRole", "student");
+          localStorage.setItem("studentId", student.id_student);
+          localStorage.setItem("admin_validation", student.admin_validation);
+          localStorage.setItem("studentAge", student.age);
+          localStorage.setItem("studentLinkedIn", student.linkedin_url);
+          localStorage.setItem("studentPhoneNumber", student.phone_number);
+          localStorage.setItem("studentPostalCode1", student.postal_code1);
+          localStorage.setItem("studentPostalCode2", student.postal_code2);
+          localStorage.setItem("studentComment", student.comment);
+          localStorage.setItem("studentSchool", student.school);
+          localStorage.setItem("studentSkills", student.skills);
+          localStorage.setItem("studentFirstname", student.firstname);
+          localStorage.setItem("studentLastname", student.lastname);
+          localStorage.setItem("studentEmail", student.email);
+
+          if (student.admin_validation === 1) {
+            localStorage.setItem("admin_validation", "true")
+            navigate("/dashboard");
+          } else {
+            localStorage.setItem("admin_validation", "false")
+            navigate("/pending-validation");
+          }
+          window.location.reload();
+          return;
+        }
+      } else if (checkboxes.startup) {
+        response = await fetch(`http://localhost:8080/api/companiesauth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+          const company = await response.json();
+          localStorage.clear();
+          localStorage.setItem("isAuthenticated", true);
+          localStorage.setItem("userRole", "startup");
+          localStorage.setItem("companyId", company.company_id);
+          localStorage.setItem("admin_validation", company.admin_validation);
+          localStorage.setItem("companyName", company.name);
+          localStorage.setItem("companyEmail", company.email);
+          localStorage.setItem("companySiret", company.siret);
+          localStorage.setItem("postalCode", company.postal_code);
+          localStorage.setItem("companyPhoneNumber", company.phone_number);
+          if (company.admin_validation === 1) {
+            localStorage.setItem("admin_validation", "true")
+            navigate("/dashboard");
+          } else {
+            localStorage.setItem("admin_validation", "false")
+            navigate("/pending-validation");
+          }
+          window.location.reload();
+          return;
+        }
+      } else if (checkboxes.admin) {
+        response = await fetch(`http://localhost:8080/api/adminsauth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+          const admin = await response.json();
+          localStorage.setItem("isAuthenticated", true);
+          localStorage.setItem("userRole", "admin");
+          localStorage.setItem("adminId", admin.id_admin);
+          localStorage.setItem("adminEmail", admin.email);
+
+          navigate("/admin-dashboard");
+          window.location.reload();
+          return;
+        }
+      }
+
       setError("Identifiants incorrects. Veuillez réessayer.");
       localStorage.clear()
-      // Optionnel : Réinitialiser le formulaire
-      e.target.reset(); 
+      e.target.reset();
+    } catch (error) {
+      setError("Une erreur est survenue. Veuillez réessayer.");
+      console.error("Erreur de connexion:", error);
     }
   };
 
@@ -105,6 +177,38 @@ function SigninPage() {
               placeholder="Votre mot de passe"
               required
             />
+          </div>
+          <div className="mb-4 flex items-center space-x-8 justify-center">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="student"
+                checked={checkboxes.student}
+                onChange={() => handleCheckboxChange('student')}
+                className="form-checkbox"
+              />
+              <span>Étudiant</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="startup"
+                checked={checkboxes.startup}
+                onChange={() => handleCheckboxChange('startup')}
+                className="form-checkbox"
+              />
+              <span>Startup</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                name="admin"
+                checked={checkboxes.admin}
+                onChange={() => handleCheckboxChange('admin')}
+                className="form-checkbox"
+              />
+              <span>Admin</span>
+            </label>
           </div>
           <button
             type="submit"

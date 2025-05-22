@@ -18,6 +18,7 @@ function App() {
   const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
   const isAdminValidated = localStorage.getItem("admin_validation") === "true";
   console.log("isAuthenticated:", isAuthenticated);
+  console.log("is adminValidated:", isAdminValidated);
 
   return (
     <Router>

@@ -20,4 +20,6 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     void deleteById(Integer id_student);
     List<Student> findByAdminValidation(Integer adminValidation);
 
+    Optional<Student> findByEmailAndPassword(String email, String password);
+
 }
