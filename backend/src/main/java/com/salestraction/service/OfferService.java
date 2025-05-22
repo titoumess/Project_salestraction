@@ -1,5 +1,6 @@
 package com.salestraction.service;
 
+import com.salestraction.model.Company;
 import com.salestraction.model.Offer;
 import com.salestraction.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,10 @@ public class OfferService {
 
     public List<Offer> getAllOffers() {
         return offerRepository.findAll();
+    }
+
+    public List<Offer> getOffersByAdminValidation(Integer adminValidation) {
+        return offerRepository.findByAdminValidation(adminValidation);
     }
 
     public Offer getOfferById(int id) {

@@ -22,6 +22,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
+    public List<Student> getStudentsByAdminValidation(Integer adminValidation) {
+        return studentRepository.findByAdminValidation(adminValidation);
+    }
+
     public Student getStudentById(Integer id) {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));

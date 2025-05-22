@@ -20,7 +20,7 @@ public class Student {
     private String school;
     private String skills;
     private String linkedin_url;
-    private Integer admin_validation = 0;
+    private Integer adminValidation = 0;
     private Integer age;
 
     public Student() {}
@@ -40,7 +40,7 @@ public class Student {
         this.school = school;
         this.skills = skills;
         this.linkedin_url = linkedin_url;
-        this.admin_validation = admin_validation;
+        this.adminValidation = admin_validation;
         this.age = age;
     }
 
@@ -141,12 +141,12 @@ public class Student {
         this.linkedin_url = linkedin_url;
     }
 
-    public Integer getAdmin_validation() {
-        return admin_validation;
+    public Integer getAdminValidation() {
+        return adminValidation;
     }
 
-    public void setAdmin_validation(Integer admin_validation) {
-        this.admin_validation = admin_validation;
+    public void setAdminValidation(Integer admin_validation) {
+        this.adminValidation = admin_validation;
     }
 
     public Integer getAge() {

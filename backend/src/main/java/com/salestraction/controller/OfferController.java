@@ -1,5 +1,6 @@
 package com.salestraction.controller;
 
+import com.salestraction.model.Company;
 import com.salestraction.model.Offer;
 import com.salestraction.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,12 @@ public class OfferController {
     private OfferService offerService;
 
     @GetMapping
-    public List<Offer> getAllOffers() {
-        return offerService.getAllOffers();
+    public List<Offer> getAllOffers(@RequestParam(value = "admin_validation", required = false) Integer adminValidation) {
+        if (adminValidation != null) {
+            return offerService.getOffersByAdminValidation(adminValidation);
+        } else {
+            return offerService.getAllOffers();
+        }
     }
 
     @GetMapping("/{id}")
@@ -55,5 +60,13 @@ public class OfferController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping("/{id}/validate")
+    public ResponseEntity<?> validateOffer(@PathVariable Integer id, @RequestBody(required = false) Offer offer) {
+        Offer o = offerService.getOfferById(id);
+        o.setAdminValidation(1);
+        offerService.saveOffer(o);
+        return ResponseEntity.ok().build();
     }
 }

@@ -1,6 +1,7 @@
 package com.salestraction.controller;
 
 import com.salestraction.model.Company;
+import com.salestraction.model.Student;
 import com.salestraction.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,12 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping
-    public List<Company> getAllCompanies() {
-        return companyService.getAllCompanies();
+    public List<Company> getAllCompanies(@RequestParam(value = "admin_validation", required = false) Integer adminValidation) {
+        if (adminValidation != null) {
+            return companyService.getCompaniesByAdminValidation(adminValidation);
+        } else {
+            return companyService.getAllCompanies();
+        }
     }
 
     @GetMapping("/{id}")
@@ -44,6 +49,14 @@ public class CompanyController {
         } else {
             return ResponseEntity.status(401).body("Identifiants incorrects");
         }
+    }
+
+    @PutMapping("/{id}/validate")
+    public ResponseEntity<?> validateCompany(@PathVariable Integer id, @RequestBody(required = false) Company company) {
+        Company c = companyService.getCompanyById(id);
+        c.setAdminValidation(1);
+        companyService.saveCompany(c);
+        return ResponseEntity.ok().build();
     }
 
     // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe

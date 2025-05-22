@@ -63,8 +63,8 @@ function App() {
         <Route path="/profile" element={<StudentProfile />} /> {/* Pour le profil connecté */}
         <Route path="/create-offer" element={<CreateOffer />} />
         <Route path="/pending-validation" element={<PendingValidation />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+
       </Routes>
     </Router>
   );
