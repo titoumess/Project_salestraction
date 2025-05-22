@@ -23,6 +23,7 @@ function SigninPage() {
 
     if (response.ok) {
       const student = await response.json();
+      localStorage.clear();
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", userRole);
       localStorage.setItem("studentId", student.id_student);
@@ -42,16 +43,15 @@ function SigninPage() {
 
     if (response.ok) {
       const company = await response.json();
+      localStorage.clear();
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", userRole);
       localStorage.setItem("companyId", company.id_company);
-      localStorage.setItem("admin_validation", String(company.admin_validation)); // Optionnel
       navigate("/dashboard");
       window.location.reload();
     } else {
       setError("Identifiants incorrects. Veuillez réessayer.");
-      localStorage.setItem("isAuthenticated", false);
-      localStorage.removeItem("userRole");
+      localStorage.clear()
       // Optionnel : Réinitialiser le formulaire
       e.target.reset(); 
     }

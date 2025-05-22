@@ -27,10 +27,10 @@ function SignupEtudiant() {
 
     if (response.ok) {
       const student = await response.json();
+      localStorage.clear();
       // Stocke l'id de l'étudiant
       localStorage.setItem("studentId", student.id_student);
       // Stocke la validation admin dans le localStorage
-      localStorage.setItem("admin_validation", String(student.admin_validation));
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "student");
       navigate("/pending-validation"); // <-- redirection vers la page d'attente

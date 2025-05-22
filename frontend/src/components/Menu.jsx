@@ -19,8 +19,7 @@ function Menu({ userRole = "student", profilePic }) {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("isAuthenticated");
-    localStorage.removeItem("userRole");
+    localStorage.clear();
     setOpen(false);
     navigate("/login");
     window.location.reload(); // Ajoute cette ligne

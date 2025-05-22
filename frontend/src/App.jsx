@@ -9,11 +9,12 @@ import OffersOrProfilesPage from "./pages/OffersOrProfilesPage"; // Page des off
 import StudentProfile from "./pages/StudentProfile";
 import CreateOffer from "./pages/CreateOffer"; // Page de création d'offre
 import PendingValidation from "./pages/PendingValidation";
+import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
 
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
-  const isAdminValidated = localStorage.getItem("admin_validation") === "true"; // ou "true" selon ton backend
+  const isAdminValidated = localStorage.getItem("admin_validation") === "true";
   console.log("isAuthenticated:", isAuthenticated);
 
   return (
@@ -61,6 +62,7 @@ function App() {
         <Route path="/profile" element={<StudentProfile />} /> {/* Pour le profil connecté */}
         <Route path="/create-offer" element={<CreateOffer />} />
         <Route path="/pending-validation" element={<PendingValidation />} />
+        <Route path="/offers/:id" element={<OfferDetail />} />
       </Routes>
     </Router>
   );

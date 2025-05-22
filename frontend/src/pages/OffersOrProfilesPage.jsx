@@ -37,13 +37,13 @@ function OffersOrProfilesPage({ userRole }) {
   return (
     <div className="offers-profiles-container">
       <Logo />
-      <div className="filters-bar">
+      {/* <div className="filters-bar">
         <input
           type="text"
           placeholder={userRole === "student" ? "Filtrer les offres..." : "Filtrer les profils..."}
           className="filters-input"
         />
-      </div>
+      </div> */}
       <div className="items-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8">
         {items.map((item) => (
           <div

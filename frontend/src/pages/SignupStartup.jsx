@@ -19,10 +19,10 @@ function SignupStartup() {
 
     if (response.ok) {
       const company = await response.json();
+      localStorage.clear();
       // Stocke l'id de la startup
       localStorage.setItem("companyId", company.id_company);
       // Stocke la validation admin dans le localStorage
-      localStorage.setItem("admin_validation", String(company.admin_validation));
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "startup");
       // Redirige vers la création d'offre
