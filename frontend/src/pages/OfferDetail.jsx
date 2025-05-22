@@ -25,14 +25,14 @@ function OfferDetail() {
 
   if (!offer) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-100">
+      <div className="flex justify-center items-center min-h-screen">
         Chargement...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-100 flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <div className="flex flex-col items-start gap-2 px-6 pt-6">
         <Logo />
         <Menu userRole={localStorage.getItem("userRole")} />
@@ -49,10 +49,6 @@ function OfferDetail() {
           </h1>
           <p className="text-gray-500 mb-2 text-center">{offer.product_service}</p>
           <div className="text-gray-700 w-full flex flex-col gap-2 mb-4">
-            <div>
-              <strong>Entreprise :</strong>{" "}
-              {company ? company.name : <span className="text-gray-400">Chargement...</span>}
-            </div>
             <div>
               <strong>Description :</strong> {offer.description}
             </div>

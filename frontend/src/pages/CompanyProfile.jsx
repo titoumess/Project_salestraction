@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import Menu from "../components/Menu";
 
@@ -7,6 +8,7 @@ function CompanyProfile() {
   const [offers, setOffers] = useState([]);
   const companyId = localStorage.getItem("companyId");
   const apiUrl = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (companyId) {
@@ -40,6 +42,12 @@ function CompanyProfile() {
           <h1 className="text-3xl font-extrabold mb-2 text-[var(--color-accent)] text-center">
             {company.name}
           </h1>
+          <button
+            className="mb-4 px-4 py-2 bg-[var(--color-accent-dark)] text-white rounded hover:bg-[var(--color-accent)] transition font-semibold"
+            onClick={() => navigate("/signup-startup", { state: { company } })}
+          >
+            Modifier mon profil
+          </button>
           <div className="text-gray-700 w-full flex flex-col gap-2 mb-4">
             <div><strong>Email :</strong> {company.email}</div>
             <div><strong>Téléphone :</strong> {company.phone_number}</div>
@@ -52,11 +60,20 @@ function CompanyProfile() {
           ) : (
             <ul className="w-full">
               {offers.map((offer) => (
-                <li key={offer.id_offer} className="mb-2 p-3 rounded bg-blue-50 border">
-                  <div className="font-semibold">{offer.title}</div>
+                <li
+                  key={offer.id_offer}
+                  className="mb-4 p-4 rounded-xl bg-white border border-gray-200 shadow flex flex-col gap-1"
+                >
+                  <div className="font-semibold text-lg text-[var(--color-accent)]">{offer.title}</div>
                   <div className="text-sm text-gray-600">{offer.product_service}</div>
                   <div className="text-sm">{offer.remuneration ? `Rémunération : ${offer.remuneration} €` : "Non rémunéré"}</div>
                   <div className="text-sm">{offer.remote ? "Télétravail possible" : "Présentiel uniquement"}</div>
+                  <button
+                    className="mt-3 px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-accent-dark)] transition font-semibold self-end"
+                    onClick={() => navigate("/create-offer", { state: { offer } })}
+                  >
+                    Modifier cette offre
+                  </button>
                 </li>
               ))}
             </ul>

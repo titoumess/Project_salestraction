@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import Menu from "../components/Menu";
 
 function StudentProfile() {
   const [student, setStudent] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const studentId = id || localStorage.getItem("studentId");
@@ -59,6 +60,12 @@ function StudentProfile() {
             <div><strong>Code postal 2 :</strong> {student.postal_code2 || <span className="text-gray-400">Non renseigné</span>}</div>
             <div><strong>Commentaire :</strong> {student.comment}</div>
           </div>
+          <button
+            className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            onClick={() => navigate("/signup", { state: { student } })}
+          >
+            Modifier mon profil
+          </button>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ function PendingValidation() {
         .then((res) => res.json())
         .then((data) => {
           // Vérifie la valeur de admin_validation (attention à la casse selon ton backend)
-          if (data.admin_validation === true || data.admin_validation === 1 || data.admin_validation === "true") {
+          if (data.adminValidation === true || data.adminValidation === 1 || data.adminValidation === "true") {
             localStorage.setItem("admin_validation", "true");
             navigate("/dashboard");
           } else {

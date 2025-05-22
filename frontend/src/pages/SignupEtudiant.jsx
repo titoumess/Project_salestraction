@@ -1,9 +1,26 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Logo from "../components/Logo";
 
 function SignupEtudiant() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const student = location.state?.student;
+
+  const [form, setForm] = useState({
+    firstname: student?.firstname || "",
+    lastname: student?.lastname || "",
+    email: student?.email || "",
+    password: "",
+    age: student?.age || "",
+    phone_number: student?.phone_number || "",
+    school: student?.school || "",
+    linkedin_url: student?.linkedin_url || "",
+    postal_code1: student?.postal_code1 || "",
+    postal_code2: student?.postal_code2 || "",
+    skills: student?.skills || "",
+    comment: student?.comment || "",
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,6 +87,8 @@ function SignupEtudiant() {
               name="lastname"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre nom"
+              value={form.lastname}
+              onChange={(e) => setForm({ ...form, lastname: e.target.value })}
               required
             />
           </div>
@@ -82,6 +101,8 @@ function SignupEtudiant() {
               name="firstname"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre prénom"
+              value={form.firstname}
+              onChange={(e) => setForm({ ...form, firstname: e.target.value })}
               required
             />
           </div>
@@ -94,6 +115,8 @@ function SignupEtudiant() {
               name="password"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre mot de passe"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
               required
             />
           </div>
@@ -106,6 +129,8 @@ function SignupEtudiant() {
               name="age"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre âge"
+              value={form.age}
+              onChange={(e) => setForm({ ...form, age: e.target.value })}
               required
             />
           </div>
@@ -118,6 +143,8 @@ function SignupEtudiant() {
               name="email"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre email"
+              value={form.email}
+              onChange={(e) => setForm({ ...form, email: e.target.value })}
               required
             />
           </div>
@@ -130,6 +157,8 @@ function SignupEtudiant() {
               name="phone_number"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre numéro de téléphone"
+              value={form.phone_number}
+              onChange={(e) => setForm({ ...form, phone_number: e.target.value })}
               required
             />
           </div>
@@ -142,6 +171,8 @@ function SignupEtudiant() {
               name="school"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Votre école"
+              value={form.school}
+              onChange={(e) => setForm({ ...form, school: e.target.value })}
               required
             />
           </div>
@@ -154,6 +185,8 @@ function SignupEtudiant() {
               name="linkedin_url"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Lien vers votre profil LinkedIn"
+              value={form.linkedin_url}
+              onChange={(e) => setForm({ ...form, linkedin_url: e.target.value })}
             />
           </div>
 
@@ -165,6 +198,8 @@ function SignupEtudiant() {
               name="postal_code1"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Code postal principal"
+              value={form.postal_code1}
+              onChange={(e) => setForm({ ...form, postal_code1: e.target.value })}
               required
             />
           </div>
@@ -177,6 +212,8 @@ function SignupEtudiant() {
               name="postal_code2"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Code postal secondaire"
+              value={form.postal_code2}
+              onChange={(e) => setForm({ ...form, postal_code2: e.target.value })}
             />
           </div>
 
@@ -188,6 +225,8 @@ function SignupEtudiant() {
               name="skills"
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Vos compétences (ex: JavaScript, Python...)"
+              value={form.skills}
+              onChange={(e) => setForm({ ...form, skills: e.target.value })}
               required
             />
           </div>
@@ -200,7 +239,8 @@ function SignupEtudiant() {
               className="w-full border border-gray-300 rounded-lg p-2"
               placeholder="Ajoutez un commentaire"
               rows="3"
-              required
+              value={form.comment}
+              onChange={(e) => setForm({ ...form, comment: e.target.value })}
             ></textarea>
           </div>
 
