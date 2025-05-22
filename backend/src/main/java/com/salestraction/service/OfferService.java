@@ -1,13 +1,6 @@
 package com.salestraction.service;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.salestraction.model.Company;
-=======
->>>>>>> a84dc46 (Ajout Authentification + Redirection vers page)
-=======
-import com.salestraction.model.Company;
->>>>>>> 9427fdc (Admin dashbord)
 import com.salestraction.model.Offer;
 import com.salestraction.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;

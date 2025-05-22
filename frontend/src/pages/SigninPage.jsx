@@ -42,13 +42,14 @@ function SigninPage() {
         });
 
         if (response.ok) {
-          console.log("On et dans la fonction student")
+
           const student = await response.json();
+
           localStorage.clear();
-      localStorage.setItem("isAuthenticated", true);
+          localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("userRole", "student");
           localStorage.setItem("studentId", student.id_student);
-          localStorage.setItem("admin_validation", student.admin_validation);
+          localStorage.setItem("adminValidation", student.adminValidation.toString());
           localStorage.setItem("studentAge", student.age);
           localStorage.setItem("studentLinkedIn", student.linkedin_url);
           localStorage.setItem("studentPhoneNumber", student.phone_number);
@@ -61,11 +62,14 @@ function SigninPage() {
           localStorage.setItem("studentLastname", student.lastname);
           localStorage.setItem("studentEmail", student.email);
 
-          if (student.admin_validation === 1) {
-            localStorage.setItem("admin_validation", "true")
+
+          if (student.adminValidation === 1) {
+            console.log("On et dans la fonction student if")
+            localStorage.setItem("isAdminValidated", "true")
             navigate("/dashboard");
           } else {
-            localStorage.setItem("admin_validation", "false")
+            console.log("On et dans la fonction student else")
+            localStorage.setItem("isAdminValidated", "false")
             navigate("/pending-validation");
           }
           window.location.reload();
@@ -84,17 +88,19 @@ function SigninPage() {
           localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("userRole", "startup");
           localStorage.setItem("companyId", company.company_id);
-          localStorage.setItem("admin_validation", company.admin_validation);
+          localStorage.setItem("adminValidation", company.adminValidation);
           localStorage.setItem("companyName", company.name);
           localStorage.setItem("companyEmail", company.email);
           localStorage.setItem("companySiret", company.siret);
           localStorage.setItem("postalCode", company.postal_code);
           localStorage.setItem("companyPhoneNumber", company.phone_number);
-          if (company.admin_validation === 1) {
-            localStorage.setItem("admin_validation", "true")
+          if (company.adminValidation === 1) {
+            console.log("On et dans la fonction startup if")
+            localStorage.setItem("isAdminValidated", "true")
             navigate("/dashboard");
           } else {
-            localStorage.setItem("admin_validation", "false")
+            console.log("On et dans la fonction startup else")
+            localStorage.setItem("isAdminValidated", "false")
             navigate("/pending-validation");
           }
           window.location.reload();

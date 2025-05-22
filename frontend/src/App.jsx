@@ -16,9 +16,9 @@ import CompanyProfile from "./pages/CompanyProfile"; // Page de profil de l'entr
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
-  const isAdminValidated = localStorage.getItem("admin_validation") === "true";
+  const isAdminValidated = localStorage.getItem("adminValidation") === "1"; // ou "true" selon ton backend
   console.log("isAuthenticated:", isAuthenticated);
-  console.log("is adminValidated:", isAdminValidated);
+  console.log("isAdminValidated:", isAdminValidated);
 
   return (
     <Router>
@@ -67,6 +67,7 @@ function App() {
         <Route path="/pending-validation" element={<PendingValidation />} />
         <Route path="/offers/:id" element={<OfferDetail />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} /> {/* Pour le dashboard connecté */}
 
         <Route path="/offers/:id" element={<OfferDetail />} />
         <Route path="/company-profile" element={<CompanyProfile />} />

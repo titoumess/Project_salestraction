@@ -1,13 +1,8 @@
 package com.salestraction.controller;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import com.salestraction.model.Company;
-=======
->>>>>>> a84dc46 (Ajout Authentification + Redirection vers page)
-=======
-import com.salestraction.model.Company;
->>>>>>> 9427fdc (Admin dashbord)
+
 import com.salestraction.model.Offer;
 import com.salestraction.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +20,7 @@ public class OfferController {
     private OfferService offerService;
 
     @GetMapping
-<<<<<<< HEAD
+
     public List<Offer> getAllOffers(
         @RequestParam(value = "admin_validation", required = false) Integer adminValidation,
         @RequestParam(value = "companyId", required = false) Integer companyId
@@ -34,10 +29,6 @@ public class OfferController {
             // Ajoute cette méthode dans OfferService et OfferRepository si besoin
             return offerService.getOffersByCompanyId(companyId);
         } else if (adminValidation != null) {
-=======
-    public List<Offer> getAllOffers(@RequestParam(value = "admin_validation", required = false) Integer adminValidation) {
-        if (adminValidation != null) {
->>>>>>> 9427fdc (Admin dashbord)
             return offerService.getOffersByAdminValidation(adminValidation);
         } else {
             return offerService.getAllOffers();
