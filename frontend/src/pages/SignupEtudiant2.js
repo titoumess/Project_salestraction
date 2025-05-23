@@ -1,27 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 
 function SignupEtudiant() {
   const navigate = useNavigate();
-  const [skillsList, setSkillsList] = useState([]);
-  const [selectedSkills, setSelectedSkills] = useState([]);
-
-  useEffect(() => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-    fetch(`${apiUrl}/api/skill`)
-      .then(res => res.json())
-      .then(setSkillsList)
-      .catch(() => setSkillsList([]));
-  }, []);
-
-  const handleSkillsChange = (e) => {
-    const options = Array.from(e.target.selectedOptions);
-    setSelectedSkills(options.map(option => option.value)); // <-- string, pas parseInt
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // ...envoie les données au backend...
     const apiUrl = import.meta.env.VITE_API_URL;
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
@@ -31,10 +17,7 @@ function SignupEtudiant() {
     if (data.postal_code1) data.postal_code1 = parseInt(data.postal_code1, 10);
     if (data.postal_code2) data.postal_code2 = data.postal_code2 ? parseInt(data.postal_code2, 10) : null;
 
-    // Ajout des compétences sélectionnées
-    data.skills = selectedSkills.join(",");
-
-    console.log(data);
+    console.log(data)
 
     const response = await fetch(`${apiUrl}/api/students`, {
       method: "POST",
@@ -44,11 +27,13 @@ function SignupEtudiant() {
 
     if (response.ok) {
       const student = await response.json();
+      // Stocke l'id de l'étudiant
       localStorage.setItem("studentId", student.id_student);
+      // Stocke la validation admin dans le localStorage
       localStorage.setItem("admin_validation", String(student.admin_validation));
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "student");
-      navigate("/pending-validation");
+      navigate("/pending-validation"); // <-- redirection vers la page d'attente
     } else {
       alert("Erreur lors de la création du compte étudiant");
     }
@@ -198,23 +183,13 @@ function SignupEtudiant() {
           {/* Compétences */}
           <div className="mb-4">
             <label className="block text-gray-700">Compétences</label>
-            <select
+            <input
+              type="text"
               name="skills"
-              multiple
-              value={selectedSkills}
-              onChange={handleSkillsChange}
               className="w-full border border-gray-300 rounded-lg p-2"
+              placeholder="Vos compétences (ex: JavaScript, Python...)"
               required
-            >
-              {skillsList.map(skill => (
-                <option key={skill.id_skill} value={skill.id_skill}>
-                  {skill.name}
-                </option>
-              ))}
-            </select>
-            <small className="text-gray-500">
-              Maintenez Ctrl (Windows) ou Cmd (Mac) pour sélectionner plusieurs compétences.
-            </small>
+            />
           </div>
 
           {/* Commentaire (optionnel) */}
