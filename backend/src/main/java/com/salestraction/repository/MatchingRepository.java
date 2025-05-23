@@ -11,4 +11,5 @@ public interface MatchingRepository extends JpaRepository<Matching, Integer> {
     // Méthodes personnalisées si besoin, par exemple :
     List<Matching> findByIdStudent(Integer id_student);
     List<Matching> findByIdOffer(Integer id_offer);
+    boolean existsByIdOfferAndIdStudent(Integer idOffer, Integer idStudent);
 }

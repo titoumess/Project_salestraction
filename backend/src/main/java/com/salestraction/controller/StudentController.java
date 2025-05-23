@@ -60,6 +60,11 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}")
+    public Student updateStudent(@PathVariable Integer id, @RequestBody Student student) {
+        return studentService.updateStudentWithPasswordCheck(id, student);
+    }
+
     // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe
     public static class AuthRequest {
         private String email;

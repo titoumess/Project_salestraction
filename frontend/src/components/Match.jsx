@@ -34,7 +34,7 @@ function Match({ matches, userRole, emptyMessage }) {
   }, [matches, userRole]);
 
   if (!matches || matches.length === 0) {
-    return <p className="text-gray-500">{emptyMessage}</p>;
+    return <p className="text-gray-400 italic text-center">{emptyMessage}</p>;
   }
 
   return (

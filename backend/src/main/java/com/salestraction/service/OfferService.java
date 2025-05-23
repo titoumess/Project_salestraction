@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OfferService {
@@ -23,16 +24,16 @@ public class OfferService {
     }
 
     public Offer getOfferById(int id) {
-        return offerRepository.findById(id);
+        return offerRepository.findById(id).orElse(null);
     }
 
     public List<Offer> getOffersByTitle(String title) {
         return offerRepository.findByTitle(title);
     }
 
-    //public List<Offer> getOffersByCompanyId(int idCompany) {
-      //  return offerRepository.findByCompany_IdCompany(idCompany);
-    //}
+    public List<Offer> getOffersByCompanyId(Integer companyId) {
+        return offerRepository.findByIdCompany(companyId);
+    }
 
     public Offer saveOffer(Offer offer) {
         return offerRepository.save(offer);
