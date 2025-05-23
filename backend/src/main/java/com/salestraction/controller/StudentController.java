@@ -65,7 +65,6 @@ public class StudentController {
         return studentService.updateStudentWithPasswordCheck(id, student);
     }
 
-
     // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe
     public static class AuthRequest {
         private String email;

@@ -4,9 +4,6 @@ import com.salestraction.model.Offer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import com.salestraction.model.Offer;
-
 import java.util.List;
 
 @Repository

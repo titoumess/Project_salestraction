@@ -1,6 +1,5 @@
 package com.salestraction.controller;
 
-
 import com.salestraction.model.Company;
 
 import com.salestraction.model.Offer;

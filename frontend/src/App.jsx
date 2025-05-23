@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
 import CompanyProfile from "./pages/CompanyProfile"; // Page de profil de l'entreprise
 
+
 function App() {
   const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const userRole = localStorage.getItem("userRole"); // Récupération du rôle de l'utilisateur
@@ -68,8 +69,6 @@ function App() {
         <Route path="/offers/:id" element={<OfferDetail />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/dashboard" element={<Dashboard />} /> {/* Pour le dashboard connecté */}
-        <Route path="/company-profile" element={<CompanyProfile />} />
-
         <Route path="/company-profile" element={<CompanyProfile />} />
       </Routes>
     </Router>

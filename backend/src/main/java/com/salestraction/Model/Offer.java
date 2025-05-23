@@ -17,7 +17,6 @@ public class Offer {
     private Integer commission;
     private String status;
     private Integer adminValidation = 0;
-
     @Column(name = "id_company")
     private Integer idCompany;
 
@@ -35,7 +34,6 @@ public class Offer {
         this.status = status;
         this.adminValidation = admin_validation;
         this.idCompany = id_company;
-
         
     }
 

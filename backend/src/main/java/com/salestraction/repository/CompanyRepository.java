@@ -21,7 +21,4 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
     Optional<Company> findBySiret(String siret);
     List<Company> findByAdminValidation(Integer adminValidation);
     Optional<Company> findByEmailAndPassword(String email, String password);
-
-
-
 }

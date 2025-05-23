@@ -44,8 +44,8 @@ function SigninPage() {
         if (response.ok) {
 
           const student = await response.json();
-          localStorage.clear();
 
+          localStorage.clear();
           localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("userRole", "student");
           localStorage.setItem("studentId", student.id_student);
