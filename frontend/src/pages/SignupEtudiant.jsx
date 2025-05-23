@@ -1,9 +1,28 @@
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 
 function SignupEtudiant() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const student = location.state?.student;
+  const isEdit = !!student;
+  const [form, setForm] = useState({
+    firstname: student?.firstname || "",
+    lastname: student?.lastname || "",
+    email: student?.email || "",
+    password: "",
+    age: student?.age || "",
+    phone_number: student?.phone_number || "",
+    school: student?.school || "",
+    linkedin_url: student?.linkedin_url || "",
+    postal_code1: student?.postal_code1 || "",
+    postal_code2: student?.postal_code2 || "",
+    skills: student?.skills || "",
+    comment: student?.comment || "",
+  });
+
+
   const [skillsList, setSkillsList] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState([]);
 
@@ -34,6 +53,11 @@ function SignupEtudiant() {
     if (data.postal_code1) data.postal_code1 = parseInt(data.postal_code1, 10);
     if (data.postal_code2) data.postal_code2 = data.postal_code2 ? parseInt(data.postal_code2, 10) : null;
 
+    // Ne pas envoyer le password vide lors d'une modification
+    if (isEdit && !data.password) {
+      delete data.password;
+    }
+
     // Ajout des compétences sélectionnées
     data.skills = selectedSkills.join(",");
 
@@ -46,12 +70,19 @@ function SignupEtudiant() {
     });
 
     if (response.ok) {
-      const student = await response.json();
-      localStorage.setItem("studentId", student.id_student);
-      localStorage.setItem("admin_validation", String(student.admin_validation));
+      const studentResp = await response.json();
+      localStorage.clear();
+      localStorage.setItem("studentId", studentResp.id_student);
+      localStorage.setItem("admin_validation", String(studentResp.admin_validation));
       localStorage.setItem("isAuthenticated", true);
       localStorage.setItem("userRole", "student");
+
+            // Redirection selon création ou modification
+      if (isEdit) {
+        navigate("/student-profile");
+      } else {
       navigate("/pending-validation");
+      }
     } else {
       alert("Erreur lors de la création ou modification du compte étudiant");
     }
