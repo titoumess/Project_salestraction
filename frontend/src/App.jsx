@@ -9,7 +9,6 @@ import OffersOrProfilesPage from "./pages/OffersOrProfilesPage"; // Page des off
 import StudentProfile from "./pages/StudentProfile";
 import CreateOffer from "./pages/CreateOffer"; // Page de création d'offre
 import PendingValidation from "./pages/PendingValidation";
-import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
 import AdminDashboard from "./pages/AdminDashboard";
 import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
 import CompanyProfile from "./pages/CompanyProfile"; // Page de profil de l'entreprise
