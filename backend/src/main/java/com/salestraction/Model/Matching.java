@@ -28,29 +28,29 @@ public class Matching {
 
 
     // Getters et Setters   
-    public Integer getMatch_id() {
+    public Integer getId_match() {
         return id_match;
     }
 
-    public void setMatch_id(Integer id_match) {
+    public void setId_match(Integer id_match) {
         this.id_match = id_match;
     }
 
 
-    public Integer getId_offer() {
+    public Integer getIdOffer() {
         return idOffer;
     }
 
-    public void setId_offer(Integer idOffer) {
+    public void setIdOffer(Integer idOffer) {
         this.idOffer = idOffer;
     }
 
 
-    public Integer getId_student() {
+    public Integer getIdStudent() {
         return idStudent;
     }
 
-    public void setId_student(Integer id_student) {
+    public void setIdStudent(Integer id_student) {
         this.idStudent = id_student;
     }
 

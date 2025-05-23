@@ -82,10 +82,11 @@ function SigninPage() {
 
         if (response.ok) {
           const company = await response.json();
+          console.log(company)
           localStorage.clear();
           localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("userRole", "startup");
-          localStorage.setItem("companyId", company.company_id);
+          localStorage.setItem("companyId", company.id_company);
           localStorage.setItem("adminValidation", company.adminValidation);
           localStorage.setItem("companyName", company.name);
           localStorage.setItem("companyEmail", company.email);
