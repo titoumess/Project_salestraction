@@ -45,10 +45,7 @@ function SigninPage() {
 
           const student = await response.json();
 
-          
-        
-          console.log("On et dans la fonction student")
-          
+          localStorage.clear();
           localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("userRole", "student");
           localStorage.setItem("studentId", student.id_student);
@@ -67,11 +64,9 @@ function SigninPage() {
 
 
           if (student.adminValidation === 1) {
-            console.log("On et dans la fonction student if")
             localStorage.setItem("isAdminValidated", "true")
             navigate("/dashboard");
           } else {
-            console.log("On et dans la fonction student else")
             localStorage.setItem("isAdminValidated", "false")
             navigate("/pending-validation");
           }
@@ -87,6 +82,7 @@ function SigninPage() {
 
         if (response.ok) {
           const company = await response.json();
+          localStorage.clear();
           localStorage.setItem("isAuthenticated", true);
           localStorage.setItem("userRole", "startup");
           localStorage.setItem("companyId", company.company_id);
@@ -97,11 +93,9 @@ function SigninPage() {
           localStorage.setItem("postalCode", company.postal_code);
           localStorage.setItem("companyPhoneNumber", company.phone_number);
           if (company.adminValidation === 1) {
-            console.log("On et dans la fonction startup if")
             localStorage.setItem("isAdminValidated", "true")
             navigate("/dashboard");
           } else {
-            console.log("On et dans la fonction startup else")
             localStorage.setItem("isAdminValidated", "false")
             navigate("/pending-validation");
           }
@@ -129,8 +123,7 @@ function SigninPage() {
       }
 
       setError("Identifiants incorrects. Veuillez réessayer.");
-      localStorage.setItem("isAuthenticated", false);
-      localStorage.removeItem("userRole");
+      localStorage.clear()
       e.target.reset();
     } catch (error) {
       setError("Une erreur est survenue. Veuillez réessayer.");

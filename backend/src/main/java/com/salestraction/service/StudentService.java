@@ -41,5 +41,13 @@ public class StudentService {
     public Student findByEmail(String email) {
         return studentRepository.findByEmail(email);
     }
+    public Student updateStudentWithPasswordCheck(Integer id, Student updatedStudent) {
+        Student existingStudent = getStudentById(id);
+        if (updatedStudent.getPassword() == null || updatedStudent.getPassword().isEmpty()) {
+            updatedStudent.setPassword(existingStudent.getPassword());
+        }
+        updatedStudent.setId_student(id);
+        return saveStudent(updatedStudent);
+    }
 }
 

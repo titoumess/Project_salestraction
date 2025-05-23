@@ -34,16 +34,44 @@ function OffersOrProfilesPage({ userRole }) {
     }
   }, [userRole, apiUrl]);
 
+  const handleLike = async (item) => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const userRole = localStorage.getItem("userRole");
+    let liking = {};
+
+    if (userRole === "student") {
+      if (!item.id_offer) {
+        alert("Impossible de liker cette offre : identifiant manquant.");
+        return;
+      }
+      liking = {
+        idStudent: Number(localStorage.getItem("studentId")),
+        idOffer: item.id_offer,
+        isStudent: true
+      };
+      console.log(liking);
+    } else {
+      if (!item.id_student || !item.id_offer) {
+        alert("Impossible de liker ce profil : identifiant manquant.");
+        return;
+      }
+      liking = {
+        idStudent: item.id_student,
+        idOffer: item.id_offer,
+        isStudent: false
+      };
+    }
+
+    await fetch(`${apiUrl}/api/likings`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(liking)
+    });
+  };
+
   return (
     <div className="offers-profiles-container">
       <Logo />
-      <div className="filters-bar">
-        <input
-          type="text"
-          placeholder={userRole === "student" ? "Filtrer les offres..." : "Filtrer les profils..."}
-          className="filters-input"
-        />
-      </div>
       <div className="items-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8">
         {items.map((item) => (
           <div
@@ -92,7 +120,7 @@ function OffersOrProfilesPage({ userRole }) {
               className="mt-auto w-full bg-[var(--color-accent)] text-white py-2 rounded-lg hover:bg-[var(--color-accent-dark)] transition"
               onClick={e => {
                 e.stopPropagation();
-                // Ajoute ici la logique pour liker
+                handleLike(item);
               }}
             >
               J’aime
@@ -100,7 +128,7 @@ function OffersOrProfilesPage({ userRole }) {
           </div>
         ))}
       </div>
-      <Menu userRole={userRole} />
+      <Menu userRole={localStorage.getItem("userRole")} />
     </div>
   );
 }

@@ -59,6 +59,11 @@ public class CompanyController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping("/{id}")
+    public Company updateCompany(@PathVariable("id") Integer id, @RequestBody Company company) {
+        return companyService.updateCompanyWithPasswordCheck(id, company);
+    }
+
     // Classe interne ou fichier séparé pour recevoir l'email et le mot de passe
     public static class AuthRequest {
         private String email;
