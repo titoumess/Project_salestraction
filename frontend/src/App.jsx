@@ -12,6 +12,7 @@ import PendingValidation from "./pages/PendingValidation";
 import AdminDashboard from "./pages/AdminDashboard";
 import OfferDetail from "./pages/OfferDetail"; // Page de détail de l'offre
 import CompanyProfile from "./pages/CompanyProfile"; // Page de profil de l'entreprise
+import NotFoundPage from "./pages/NotFoundPage";
 
 
 function App() {
@@ -70,6 +71,8 @@ function App() {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/dashboard" element={<Dashboard />} /> {/* Pour le dashboard connecté */}
         <Route path="/company-profile" element={<CompanyProfile />} />
+        <Route path="*" element={<NotFoundPage />} />
+
       </Routes>
     </Router>
   );

@@ -12,15 +12,15 @@ function Match({ matches, userRole, emptyMessage }) {
       for (const match of matches) {
         if (userRole === "student") {
           // Récupère l'offre et la startup associée
-          const offer = await fetch(`${apiUrl}/api/offers/${match.id_offer}`).then(res => res.json());
-          const company = await fetch(`${apiUrl}/api/companies/${offer.id_enterprise}`).then(res => res.json());
+          const offer = await fetch(`${apiUrl}/api/offers/${match.idOffer}`).then(res => res.json());
+          const company = await fetch(`${apiUrl}/api/companies/${offer.idCompany}`).then(res => res.json());
           newDetails[match.match_id] = {
             productName: offer.title,
             companyName: company.name,
           };
         } else {
           // Récupère l'étudiant associé
-          const student = await fetch(`${apiUrl}/api/students/${match.id_student}`).then(res => res.json());
+          const student = await fetch(`${apiUrl}/api/students/${match.idStudent}`).then(res => res.json());
           newDetails[match.match_id] = {
             firstname: student.firstname,
             lastname: student.lastname,
@@ -66,9 +66,9 @@ function Match({ matches, userRole, emptyMessage }) {
             </p>
             <button
               className="mt-auto bg-[var(--color-accent)] text-white py-1 px-4 rounded hover:bg-[var(--color-accent-dark)] transition"
-              onClick={() => navigate(`/messages/${match.match_id}`)}
+              // onClick={() => navigate(`/messages/${match.match_id}`)}
             >
-              Message
+              Contacter
             </button>
           </div>
         ))}

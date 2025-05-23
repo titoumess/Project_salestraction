@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 function Like({ items, userRole, emptyMessage }) {
   const navigate = useNavigate();
-
   return (
     <section className="mt-8">
       <ul className="space-y-4">
@@ -14,7 +13,7 @@ function Like({ items, userRole, emptyMessage }) {
               className="flex items-center gap-4 bg-white rounded-2xl shadow-md border border-blue-100 px-4 py-3 transition hover:shadow-lg hover:scale-[1.01] cursor-pointer"
               onClick={() => {
                 if (userRole === "student") {
-                  navigate(`/offers/${item.id_company}`);
+                  navigate(`/offers/${item.id_offer}`);
                 } else {
                   navigate(`/students/${item.id_student}`);
                 }
