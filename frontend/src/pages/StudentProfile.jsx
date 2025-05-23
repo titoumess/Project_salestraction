@@ -60,13 +60,15 @@ function StudentProfile() {
             <div><strong>Code postal 2 :</strong> {student.postal_code2 || <span className="text-gray-400">Non renseigné</span>}</div>
             <div><strong>Commentaire :</strong> {student.comment}</div>
           </div>
-          <button
-            className="mt-6 px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-accent-dark)] transition font-semibold shadow"
-            onClick={() => navigate("/signup-etudiant", { state: { student } })}
-
-          >
-            Modifier mon profil
-          </button>
+          {localStorage.getItem("userRole") === "student" &&
+            String(student.id_student) === String(localStorage.getItem("studentId")) && (
+              <button
+                className="mt-6 px-4 py-2 bg-[var(--color-accent)] text-white rounded-lg hover:bg-[var(--color-accent-dark)] transition font-semibold shadow"
+                onClick={() => navigate("/signup-etudiant", { state: { student } })}
+              >
+                Modifier mon profil
+              </button>
+            )}
         </div>
       </div>
     </div>
