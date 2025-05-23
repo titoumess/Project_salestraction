@@ -72,7 +72,6 @@ function OffersOrProfilesPage({ userRole }) {
   return (
     <div className="offers-profiles-container">
       <Logo />
-
       <div className="items-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 py-8">
         {items.map((item) => (
           <div
