@@ -69,6 +69,14 @@ function StudentProfile() {
                 Modifier mon profil
               </button>
             )}
+            {localStorage.getItem("userRole") === "startup" && (
+              <button
+                className="mt-4 bg-[var(--color-accent)] text-white py-2 px-6 rounded-lg hover:bg-[var(--color-accent-dark)] transition"
+                onClick={() => navigate(-1)}
+              >
+                Retour
+              </button>
+            )}
         </div>
       </div>
     </div>
